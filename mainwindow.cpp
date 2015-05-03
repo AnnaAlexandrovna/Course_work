@@ -13,7 +13,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->About, SIGNAL(triggered()), this, SLOT(about()));
 
     ui->Secondary->hide();
-     ui->pushButton_2->hide();
+    ui->pushButton_2->hide();
+    this->setFixedSize(415,160);
 }
 void MainWindow::help()
 {
@@ -102,21 +103,20 @@ void MainWindow::on_pushButton_clicked()
    {
        ui->pushButton_2->show();
    }
-
    for (int i=0;  i <sequence.count(); i++ )
     {
         a = sequence[i].digitValue();
         if  (i == 0)
         {
             Head = new List1;
-            Head->next=0;
-            Head->down=0;
+            Head->next=NULL;
+            Head->down=NULL;
             Head->info=0;
 
             List2 *l = new List2;
             l->info=a;
             l->back=NULL;
-            l->next=0;
+            l->next=NULL;
             Head->down=l;
         }
         else if ( (i % 2) != 0)
@@ -130,41 +130,45 @@ void MainWindow::on_pushButton_clicked()
     }
      current=Head;state=1;
 }
-
 void MainWindow::on_display_clicked()
 {
     List1 *s = Head;
-   QString s1 = ""; QString s2 = "";
+    QString s1 = ""; QString s2 = "";
     if (s->down)
-    {
-    if ( s == current &&  state == 1)
-       s1=  s1 + "< font color='lightskyblue'>" + QString::number(s->info) + "</font>"  ;
-    else   s1=  s1 + QString::number(s->info);
-    if (  s ==current &&  state ==0)
-       s2= s2 + "< font color='lightskyblue'>" + QString::number(s->down->info) + "</font>";
-    else
-        s2=  s2 + QString::number(s->down->info);
-    s=s->next;
-    while(s->next!=0)
-    {
-        if (s==current && state == 1)
-           s1= s1+ "->" + "< font color='lightskyblue'>" + QString::number(s->info) + "</font>" ;
+        if (s==current &&  state ==0)
+            s2=  s2 + "< font color='lightskyblue'>" + QString::number(s->down->info) + "</font>" ;
         else
+            s2=  s2 + QString::number(s->down->info);
+    if (s)
+        if ( s == current &&  state == 1)
+              s1=  s1 + "< font color='lightskyblue'>" + QString::number(s->info) + "</font>"  ;
+           else
+              s1=  s1 + QString::number(s->info);
+   if (s->next)
+   {
+        s=s->next;
+        while (s->next)
+        {
+            if (s==current && state == 1)
+                s1= s1+ "->" + "< font color='lightskyblue'>" + QString::number(s->info) + "</font>" ;
+            else
             s1=  s1 + "->" + QString::number(s->info) ;
-        if (s==current &&  state ==0)
-           s2=  s2 +"->" + "< font color='lightskyblue'>" + QString::number(s->down->info) + "</font>" ;
-        else
-            s2=  s2 + "->" +QString::number(s->down->info);
+            if (s==current &&  state ==0)
+                s2=  s2 +"->" + "< font color='lightskyblue'>" + QString::number(s->down->info) + "</font>" ;
+            else
+                s2=  s2 + "->" +QString::number(s->down->info);
             s=s->next;
-    }
-    if (s->down)
-       {
-        if (s==current &&  state ==0)
-            s2=  s2 +"->" + "< font color='lightskyblue'>" + QString::number(s->down->info) + "</font>" ;
-        else
-            s2=  s2 + "->" +QString::number(s->down->info);
-    }
-    ui->textBrowser->setText(s1 + "<br>" + s2);}
+        }
+        if (s->down)
+        {
+            if (s==current &&  state ==0)
+                s2=  s2 +"->" + "< font color='lightskyblue'>" + QString::number(s->down->info) + "</font>" ;
+            else
+                s2=  s2 + "->" +QString::number(s->down->info);
+        }
+   }
+    ui->textBrowser->setText(s1 + "<br>" + s2);
+
 }
 
 void MainWindow::on_first_clicked()
@@ -209,4 +213,9 @@ void MainWindow::on_next_clicked()
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+         this->setFixedSize(415,300);
 }
