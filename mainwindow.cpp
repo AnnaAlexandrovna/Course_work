@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->About, SIGNAL(triggered()), this, SLOT(about()));
 
     ui->Secondary->hide();
+     ui->pushButton_2->hide();
 }
 void MainWindow::help()
 {
@@ -93,16 +94,15 @@ void MainWindow::insertUneven(List1 **s, int x)
     list->down=listDown->next;
 }
 
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
-
 void MainWindow::on_pushButton_clicked()
 {
-
     QString sequence = ui->createEdit->text();
    int a=0;
+   if (!sequence.isEmpty())
+   {
+       ui->pushButton_2->show();
+   }
+
    for (int i=0;  i <sequence.count(); i++ )
     {
         a = sequence[i].digitValue();
@@ -134,12 +134,13 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::on_display_clicked()
 {
     List1 *s = Head;
-    QString s1 = ""; QString s2 = "";
-
-    if (s ==current &&  state == 1)
+   QString s1 = ""; QString s2 = "";
+    if (s->down)
+    {
+    if ( s == current &&  state == 1)
        s1=  s1 + "< font color='lightskyblue'>" + QString::number(s->info) + "</font>"  ;
     else   s1=  s1 + QString::number(s->info);
-    if (s==current &&  state ==0)
+    if (  s ==current &&  state ==0)
        s2= s2 + "< font color='lightskyblue'>" + QString::number(s->down->info) + "</font>";
     else
         s2=  s2 + QString::number(s->down->info);
@@ -162,8 +163,8 @@ void MainWindow::on_display_clicked()
             s2=  s2 +"->" + "< font color='lightskyblue'>" + QString::number(s->down->info) + "</font>" ;
         else
             s2=  s2 + "->" +QString::number(s->down->info);
-        }
-    ui->textBrowser->setText(s1 + "<br>" + s2);
+    }
+    ui->textBrowser->setText(s1 + "<br>" + s2);}
 }
 
 void MainWindow::on_first_clicked()
@@ -202,4 +203,10 @@ void MainWindow::on_next_clicked()
         }
     }
     on_display_clicked();
+}
+
+
+MainWindow::~MainWindow()
+{
+    delete ui;
 }
