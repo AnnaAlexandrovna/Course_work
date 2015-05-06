@@ -43,16 +43,19 @@ private:
     Ui::MainWindow *ui;
 
 private slots:
-     void insertEven(List1 **, int);
+
+    void insertEven(List1 **, int);
     void insertUneven(List1 **, int);
-    void on_pushButton_clicked();
+    void on_addElements_clicked();
 
     void on_down_clicked();
     void on_first_clicked();
     void on_next_clicked();
+    void on_display_clicked();
+    void on_refresh_clicked();
 
-    void on_pushButton_2_clicked();
-    void on_actionHelp_triggered();
+    void on_Help_triggered();
+    void on_record_triggered();
 };
 
 #endif // MAINWINDOW_H
