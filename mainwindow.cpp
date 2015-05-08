@@ -4,7 +4,7 @@
 #include <QPixmap>
 #include <QFile>
 #include <QTextStream>
-
+#include <save.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -24,6 +24,7 @@ void MainWindow::insertEven(List1 **s, int x)
     List1 *list = *s;
     List1 *previous = 0;
 
+    List2 *down;
     while (list!=0)
     {
         previous = list;
@@ -151,6 +152,7 @@ void MainWindow::on_first_clicked()
     ui->value->setText(QString::number(Head->info));
     current=Head;
     state = 1;
+    ui->next->setDisabled(false);
    on_display_clicked();
 }
 
@@ -164,22 +166,27 @@ void MainWindow::on_down_clicked()
 
 void MainWindow::on_next_clicked()
 {
+
     if (state == 1)
     {
-        if (current->next)
+        current=current->next;
+        if (current->info!=0)
         {
-            current=current->next;
+
             ui->value->setText( QString::number(current->info));
         }
+        else  ui->next->setDisabled(true);
    }
    else if (state == 0)
     {
-        if (current->next && current->down)
+        current=current->next;
+        if (current && current->down)
         {
-            current=current->next;
+          //  current=current->next;
             ui->value->setText( QString::number(current->down->info));
             state =0;
         }
+         else ui->next->setDisabled(true);
     }
    on_display_clicked();
 }
@@ -243,13 +250,18 @@ void MainWindow::on_refresh_clicked()
     on_display_clicked();
 }
 
-void MainWindow::on_record_triggered()
+void MainWindow::on_actionSave_triggered()
 {
-    QFile *file = new QFile("struct.txt");
-    file->open(QIODevice::WriteOnly);
-
+    QString pathF;
     this->setFixedSize(415,248);
-    List1 *s = Head;
+
+    Save save;
+    save.setWindowFlags(Qt::WindowFullscreenButtonHint);
+    save.exec();
+  List1 *s = Head;
+
+    QFile *file = new QFile(save.pathf);
+    file->open(QIODevice::WriteOnly);
 
       QString s1 = ""; QString s2 = "";
       if (s->down)
@@ -272,5 +284,5 @@ void MainWindow::on_record_triggered()
           }
      }
      file->write(s1.toUtf8() + "\n" + s2.toUtf8());
-    file->close();
+     file->close();
 }

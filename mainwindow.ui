@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>414</width>
-    <height>241</height>
+    <height>255</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
       <x>10</x>
       <y>80</y>
       <width>391</width>
-      <height>141</height>
+      <height>131</height>
      </rect>
     </property>
     <property name="title">
@@ -51,7 +51,7 @@
        <x>0</x>
        <y>20</y>
        <width>392</width>
-       <height>101</height>
+       <height>111</height>
       </rect>
      </property>
      <layout class="QHBoxLayout" name="ListViewerLayout">
@@ -150,7 +150,7 @@
             </property>
             <property name="icon">
              <iconset>
-              <normaloff>../../Qt Creator/build-Disagner-Desktop-Release/down1.png</normaloff>../../Qt Creator/build-Disagner-Desktop-Release/down1.png</iconset>
+              <normaloff>../build-Disagner-Desktop-Release/down1.png</normaloff>../build-Disagner-Desktop-Release/down1.png</iconset>
             </property>
             <property name="flat">
              <bool>true</bool>
@@ -175,7 +175,7 @@
             </property>
             <property name="icon">
              <iconset>
-              <normaloff>../../Qt Creator/build-Disagner-Desktop-Release/start2.png</normaloff>../../Qt Creator/build-Disagner-Desktop-Release/start2.png</iconset>
+              <normaloff>../build-Disagner-Desktop-Release/start2.png</normaloff>../build-Disagner-Desktop-Release/start2.png</iconset>
             </property>
             <property name="flat">
              <bool>true</bool>
@@ -209,7 +209,7 @@
             </property>
             <property name="icon">
              <iconset>
-              <normaloff>../../Qt Creator/build-Disagner-Desktop-Release/right1.png</normaloff>../../Qt Creator/build-Disagner-Desktop-Release/right1.png</iconset>
+              <normaloff>../build-Disagner-Desktop-Release/right1.png</normaloff>../build-Disagner-Desktop-Release/right1.png</iconset>
             </property>
             <property name="flat">
              <bool>true</bool>
@@ -372,7 +372,7 @@
     <property name="title">
      <string>Файл</string>
     </property>
-    <addaction name="record"/>
+    <addaction name="actionSave"/>
    </widget>
    <addaction name="menu_2"/>
    <addaction name="menu"/>
@@ -382,9 +382,9 @@
     <string>&amp;О программе</string>
    </property>
   </action>
-  <action name="record">
+  <action name="actionSave">
    <property name="text">
-    <string>&amp;Записать в файл</string>
+    <string>Сохранить </string>
    </property>
   </action>
  </widget>

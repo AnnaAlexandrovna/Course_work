@@ -55,7 +55,7 @@ private slots:
     void on_refresh_clicked();
 
     void on_Help_triggered();
-    void on_record_triggered();
+    void on_actionSave_triggered();
 };
 
 #endif // MAINWINDOW_H
