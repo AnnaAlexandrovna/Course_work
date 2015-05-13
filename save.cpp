@@ -31,8 +31,8 @@ Save::Save(QWidget *parent) :
 void Save::on_listView_clicked(const QModelIndex &index)
 {
     ui->treeView->setModel(mdlDir);
-   ui->treeView->setRootIndex(index);
-   ui->label_3->setText( mdlDir->filePath(index));
+    ui->treeView->setRootIndex(index);
+    ui->label_3->setText( mdlDir->filePath(index));
     pathf = mdlDir->filePath(index);
 }
 
@@ -59,4 +59,11 @@ void Save::on_pushButton_clicked()
 void Save::on_pushButton_2_clicked()
 {
     close();
+}
+
+void Save::on_createDir_clicked()
+{
+    QDir dir(pathf);
+ QModelIndex idx = mdlDir->index(pathf);
+
 }

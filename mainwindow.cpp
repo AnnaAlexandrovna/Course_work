@@ -172,7 +172,6 @@ void MainWindow::on_next_clicked()
         current=current->next;
         if (current->info!=0)
         {
-
             ui->value->setText( QString::number(current->info));
         }
         else  ui->next->setDisabled(true);
@@ -182,7 +181,6 @@ void MainWindow::on_next_clicked()
         current=current->next;
         if (current && current->down)
         {
-          //  current=current->next;
             ui->value->setText( QString::number(current->down->info));
             state =0;
         }
